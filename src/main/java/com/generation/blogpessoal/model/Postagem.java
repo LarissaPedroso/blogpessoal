@@ -13,7 +13,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 // model => modelar os atributos e a tabela postagens no banco de dados
-@Entity
+@Entity 
+//entity => essa classe será usada para gerar uma tabela
 @Table(name="tb_postagens")
 public class Postagem {
 	
@@ -64,6 +65,4 @@ public class Postagem {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	
-	
 }
