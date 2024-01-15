@@ -1,9 +1,16 @@
 package com.generation.blogpessoal.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,6 +24,11 @@ public class Tema {
 	
 	@NotNull(message = "O atributo descrição é obrigatório")
 	private String descricao;
+	
+	// fetch define a estratégia de busca. Temos dois: Lazy e Eager
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("tema")
+	private List<Postagem> postagem;
 	
 	public Long getId() {
 		return this.id;
@@ -34,5 +46,11 @@ public class Tema {
 		this.descricao = descricao;
 	}
 	
+	public List<Postagem> getPostagem(){
+		return postagem;
+	}
 	
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem; 
+	}
 }
