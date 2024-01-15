@@ -25,7 +25,7 @@ public class Tema {
 	@NotNull(message = "O atributo descrição é obrigatório")
 	private String descricao;
 	
-	// fetch define a estratégia de busca. Temos dois: Lazy e Eager
+	// fetch define a estratégia de busca. Temos dois: Lazy e EagerS
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
